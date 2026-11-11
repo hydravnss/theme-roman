@@ -1,0 +1,14 @@
+{
+    "display_name": "Thème Roman",
+    "loading_order": 120,
+    "requires": [],
+    "optional": [],
+    "js": "index-101.js",
+    "css": "style-101.css",
+    "author": "hydravnss",
+    "version": "1.0.0",
+    "minimum_client_version": "1.12.0",
+    "auto_update": true,
+    "homePage": "https://github.com/hydravnss/theme-roman",
+    "description": "FR: Thème typographique sans bulles, police Apple, texte blanc et italique dont tu choisis la couleur. EN: Typographic no-bubble theme with Apple font, white dialogue, and a customizable italic colour."
+}

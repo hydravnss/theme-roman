@@ -1,0 +1,323 @@
+/* Thème Roman — panneau de réglages + mise en page du chat.
+   Aucune règle sur #send_form, #form_sheld, #sheld (hauteur / position) : la barre reste en flux. */
+
+#tr_settings .tr-hint {
+    opacity: 0.75;
+    font-size: 0.9em;
+    margin: 4px 0 8px;
+    line-height: 1.35;
+}
+
+#tr_settings .tr-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+    flex-wrap: wrap;
+}
+
+#tr_settings .tr-row > label {
+    flex: 1 1 auto;
+}
+
+#tr_settings .tr-row input[type="color"] {
+    width: 48px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    background: none;
+    cursor: pointer;
+}
+
+#tr_settings .tr-hex {
+    width: 96px;
+    flex: 0 0 96px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    text-transform: lowercase;
+}
+
+#tr_settings .tr-preview {
+    margin: 10px 0 4px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #0f0f0f;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#tr_settings .tr-pv-normal {
+    display: block;
+    color: #fcfcfc;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#tr_settings .tr-pv-italic {
+    display: block;
+    margin-top: 6px;
+    color: var(--tr-italic, #c8b080);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Chat                                                                      */
+/* -------------------------------------------------------------------------- */
+
+html body.tr-on {
+    --tr-italic: #c8b080;
+    --tr-text: #fcfcfc;
+    --tr-name: #ffffff;
+    --tr-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Compact Text", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html body.tr-on #chat .mes,
+html body.tr-on #chat .mes .mes_block,
+html body.tr-on #chat .mes .mes_text,
+html body.tr-on #chat .mes .name_text {
+    font-family: var(--tr-font) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+html body.tr-on #chat .mes {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    position: relative !important;
+    padding: 14px 18px 8px !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    gap: 0 !important;
+    --mes-right-spacing: 0px;
+}
+
+html body.tr-on #chat .mes.last_mes {
+    padding-bottom: 16px !important;
+}
+
+html body.tr-on #chat .mes .mes_block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    gap: 0 !important;
+}
+
+html body.tr-on #chat .mes .tr-header {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+}
+
+html body.tr-on #chat .mes[is_user="true"] .tr-header {
+    justify-content: flex-end !important;
+    margin: 0 0 2px !important;
+    min-height: 22px;
+}
+
+html body.tr-on #chat .mes .tr-header .mesAvatarWrapper,
+html body.tr-on #chat .mes > .mesAvatarWrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+html body.tr-on #chat .mes[is_user="true"] .tr-header .mesAvatarWrapper,
+html body.tr-on #chat .mes[is_user="true"] .tr-header .name_text,
+html body.tr-on #chat .mes[is_user="true"] .tr-header .ch_name > .flex-container.flex1,
+html body.tr-on.documentstyle #chat .mes[is_user="true"] .mesAvatarWrapper,
+html body.tr-on.documentstyle #chat .mes[is_user="true"] .name_text {
+    display: none !important;
+}
+
+/* documentstyle cache aussi les avatars des bots : on les remet */
+html body.tr-on.documentstyle #chat .mes:not([is_user="true"]) .tr-header .mesAvatarWrapper,
+html body.tr-on.documentstyle #chat .mes:not([is_user="true"]) .tr-header .name_text {
+    display: flex !important;
+}
+
+html body.tr-on.documentstyle #chat .mes:not([is_user="true"]) .tr-header .name_text {
+    display: inline !important;
+}
+
+html body.tr-on #chat .mes .mesAvatarWrapper .mesIDDisplay,
+html body.tr-on #chat .mes .mesAvatarWrapper .mes_timer,
+html body.tr-on #chat .mes .mesAvatarWrapper .tokenCounterDisplay,
+html body.tr-on #chat .mes .timestamp,
+html body.tr-on #chat .mes .timestamp-icon {
+    display: none !important;
+}
+
+html body.tr-on #chat .mes .avatar {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex: none !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+html body.tr-on #chat .mes .avatar img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+html body.tr-on #chat .mes .tr-header > .ch_name {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    gap: 8px !important;
+}
+
+html body.tr-on #chat .mes .name_text {
+    color: var(--tr-name) !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    line-height: 1.2 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: none !important;
+}
+
+html body.tr-on #chat .mes .mes_text {
+    color: var(--tr-text) !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    line-height: 24px !important;
+    letter-spacing: -0.01em !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+html body.tr-on #chat .mes .mes_text p {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    background: transparent !important;
+}
+
+html body.tr-on #chat .mes .mes_text p:last-child {
+    margin-bottom: 0 !important;
+}
+
+html body.tr-on #chat .mes .mes_text em,
+html body.tr-on #chat .mes .mes_text i {
+    color: var(--tr-italic, #c8b080) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-synthesis: none !important;
+    background: transparent !important;
+    text-shadow: none !important;
+}
+
+html body.tr-on #chat .mes .mes_text strong,
+html body.tr-on #chat .mes .mes_text b {
+    color: var(--tr-text) !important;
+    font-weight: 800 !important;
+}
+
+/* Boutons : le « … » reste visible à droite du nom (et en haut à droite de tes messages) */
+html body.tr-on #chat .mes .mes_buttons {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+}
+
+html body.tr-on #chat .mes .mes_buttons .extraMesButtonsHint {
+    display: inline-flex !important;
+    opacity: 0.85 !important;
+    color: #c8c8c8 !important;
+    font-size: 16px !important;
+}
+
+html body.tr-on #chat .mes .mes_buttons > .mes_button:not(.extraMesButtonsHint),
+html body.tr-on #chat .mes .mes_buttons > .mes_bookmark {
+    opacity: 0.55;
+}
+
+html body.tr-on #chat .mes .for_checkbox {
+    display: none;
+}
+
+html body.tr-on #chat .mes:has(> .del_checkbox[style*="display: block"]) .for_checkbox,
+html body.tr-on #chat .mes:has(> .del_checkbox[style*="display: block"]) > .del_checkbox {
+    display: block !important;
+}
+
+/* System / petits messages : on ne force pas la grosse typo */
+html body.tr-on #chat .mes.smallSysMes {
+    padding: 6px 18px !important;
+}
+
+html body.tr-on #chat .mes.smallSysMes .mes_text {
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 18px !important;
+    opacity: 0.7;
+}
